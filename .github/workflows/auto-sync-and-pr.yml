@@ -1,0 +1,55 @@
+name: Sync Fork and Create PR
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch: # Allows manual triggering from GitHub Actions
+
+jobs:
+    sync-and-pr:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Your Fork
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0 # Fetch all history for proper syncing
+
+            - name: Set Up Git
+              run: |
+                  git config --global user.name "github-actions[bot]"
+                  git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+            - name: Add Original Repo as Remote and Fetch Changes
+              run: |
+                  git remote add upstream https://github.com/awaissaddiqui/Faizan_Portfolio.git
+                  git fetch upstream
+                  git checkout main
+                  git merge upstream/main --allow-unrelated-histories -m "🔄 Sync fork with original repo"
+
+            - name: Push Synced Changes to Your Fork
+              run: |
+                  git push origin main
+
+            - name: Generate Unique Branch Name for PR
+              run: |
+                  BRANCH_NAME="aimalexe/$(date +'%Y-%m-%d-%H%M%S')"
+                  echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+            - name: Create Branch in Fork and Push
+              run: |
+                  git checkout -b $BRANCH_NAME
+                  git push origin $BRANCH_NAME
+
+            - name: Create Pull Request to Original Repo
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+              run: |
+                  gh pr create \
+                    --repo awaissaddiqui/Faizan_Portfolio \
+                    --base main \
+                    --head aimalexe:$BRANCH_NAME \
+                    --title "🔄 Auto PR: Sync Fork to Original Repo ($BRANCH_NAME)" \
+                    --body "This pull request syncs changes from my fork to the original repo. Please review and merge when ready."
