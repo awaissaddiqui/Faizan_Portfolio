@@ -7,13 +7,13 @@ const Navbar = () => {
         <nav className="bg-gradient-to-r from-black to-gray-900 text-white px-6 md:px-16 py-4 shadow-md fixed top-0 left-0 w-full z-50">
             <div className="container mx-auto flex justify-between items-center">
                 {/* Logo */}
-                <h1 className="text-lg md:text-xl font-semibold">Faizan Shah</h1>
+                <h1 className="text-lg md:text-xl font-semibold text-textColor">Faizan Shah</h1>
 
                 {/* Hamburger Menu - Visible on Small Screens */}
                 <div className="md:hidden">
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="text-white focus:outline-none"
+                        className="text-textColor focus:outline-none"
                     >
                         {isOpen ? (
                             <svg
@@ -50,39 +50,39 @@ const Navbar = () => {
                 </div>
 
                 {/* Desktop Navigation */}
-                <ul className="hidden md:flex space-x-8 text-sm md:text-md font-medium">
+                <ul className="hidden md:flex space-x-8 text-sm md:text-md font-medium ">
                     <li>
-                        <a href="#home" className="hover:text-blue-400 cursor-pointer">
+                        <a href="#home" className="text-textColor hover:text-hoverColor cursor-pointer font-family text-xl">
                             Home
                         </a>
                     </li>
                     <li>
-                        <a href="#about-me" className="hover:text-blue-400 cursor-pointer">
+                        <a href="#about-me" className="text-textColor hover:text-hoverColor cursor-pointer font-family text-xl">
                             About
                         </a>
                     </li>
                     <li>
-                        <a href="#work-experience" className="hover:text-blue-400 cursor-pointer">
+                        <a href="#work-experience" className="text-textColor hover:text-hoverColor cursor-pointer font-family text-xl">
                             Experience
                         </a>
                     </li>
                     <li>
-                        <a href="#skills" className="hover:text-blue-400 cursor-pointer">
+                        <a href="#skills" className="text-textColor hover:text-hoverColor cursor-pointer font-family text-xl">
                             Skills
                         </a>
                     </li>
                     <li>
-                        <a href="#certifications" className="hover:text-blue-400 cursor-pointer">
+                        <a href="#certifications" className="text-textColor hover:text-hoverColor cursor-pointer font-family text-xl">
                             Certificates
                         </a>
                     </li>
                     <li>
-                        <a href="#blogs" className="hover:text-blue-400 cursor-pointer">
+                        <a href="#blogs" className="text-textColor hover:text-hoverColor cursor-pointer font-family text-xl">
                             Blogs
                         </a>
                     </li>
                     <li>
-                        <a href="#contact-info" className="hover:text-blue-400 cursor-pointer">
+                        <a href="#contact-info" className="text-textColor hover:text-hoverColor cursor-pointer font-family text-xl">
                             Contact
                         </a>
                     </li>
@@ -95,7 +95,7 @@ const Navbar = () => {
                     <li>
                         <a
                             href="#home"
-                            className="hover:text-blue-400 cursor-pointer"
+                            className="text-textColor hover:text-hoverColor cursor-pointer"
                             onClick={() => setIsOpen(false)}
                         >
                             Home
@@ -104,7 +104,7 @@ const Navbar = () => {
                     <li>
                         <a
                             href="#about-me"
-                            className="hover:text-blue-400 cursor-pointer"
+                            className="text-textColor hover:text-hoverColor cursor-pointer"
                             onClick={() => setIsOpen(false)}
                         >
                             About
@@ -113,7 +113,7 @@ const Navbar = () => {
                     <li>
                         <a
                             href="#work-experience"
-                            className="hover:text-blue-400 cursor-pointer"
+                            className="text-textColor hover:text-hoverColor cursor-pointer"
                             onClick={() => setIsOpen(false)}
                         >
                             Experience
@@ -122,7 +122,7 @@ const Navbar = () => {
                     <li>
                         <a
                             href="#skills"
-                            className="hover:text-blue-400 cursor-pointer"
+                            className="text-textColor hover:text-hoverColor cursor-pointer"
                             onClick={() => setIsOpen(false)}
                         >
                             Skills
@@ -131,7 +131,7 @@ const Navbar = () => {
                     <li>
                         <a
                             href="#certifications"
-                            className="hover:text-blue-400 cursor-pointer"
+                            className="text-textColor hover:text-hoverColor cursor-pointer"
                             onClick={() => setIsOpen(false)}
                         >
                             Certificates
@@ -140,7 +140,7 @@ const Navbar = () => {
                     <li>
                         <a
                             href="#blogs"
-                            className="hover:text-blue-400 cursor-pointer"
+                            className="text-textColor hover:text-hoverColor cursor-pointer"
                             onClick={() => setIsOpen(false)}
                         >
                             Blogs
@@ -149,7 +149,7 @@ const Navbar = () => {
                     <li>
                         <a
                             href="#contact-info"
-                            className="hover:text-blue-400 cursor-pointer"
+                            className="text-textColor hover:text-hoverColor cursor-pointer"
                             onClick={() => setIsOpen(false)}
                         >
                             Contact
