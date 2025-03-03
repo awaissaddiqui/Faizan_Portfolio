@@ -46,13 +46,14 @@ const ContactInfo = () => {
     setError(false);
 
     const serviceID = "service_9r4jnnd"; // Replace with EmailJS Service ID
-    const templateID = "template_gne4iy8"; // Replace with EmailJS Template ID
+    const templateID = "template_kfw53p8"; // Replace with EmailJS Template ID
     const publicKey = "3GUBuAjKj03za432R"; // Replace with EmailJS Public Key
 
     try {
       await emailjs.send(serviceID, templateID, formData, publicKey);
       setSuccess(true);
       console.log("Form submitted successfully", formData);
+      setFormData({ name: "", email: "", message: "" })
     } catch (err) {
       console.log(err);
       setError(true);
