@@ -119,7 +119,7 @@ const Blogs = () => {
               <img src={post.image} alt="Blog" className="w-full h-48 object-cover" />
               <div className="p-4">
                 <h3 className="text-white font-semibold text-lg">{post.title}</h3>
-                <p className="text-gray-400 text-sm mt-2">{post.description}</p>
+                <p className="text-gray-400 text-sm mt-2 justify-stretch">{post.description}</p>
                 <a href={post.link} target="_blank" rel="noopener noreferrer">
                   <button className="mt-4 text-sm hover:cursor-pointer text-blue-400 hover:text-blue-300 transition">
                     Read more →
