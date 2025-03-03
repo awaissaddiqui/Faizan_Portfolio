@@ -50,12 +50,11 @@ const blogPosts = [
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
+  const { VITE_REACT_MEDIUM_URL } = import.meta.env;
   useEffect(() => {
     const fetchMediumBlogs = async () => {
       try {
-        const response = await fetch(
-          "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@faizanshah801"
-        );
+        const response = await fetch(VITE_REACT_MEDIUM_URL);
         const data = await response.json();
 
         if (data.status === "ok") {
@@ -77,7 +76,7 @@ const Blogs = () => {
           });
 
           setBlogs(posts);
-          console.log(data);
+          // console.log(data);
         }
       } catch (error) {
         console.log("Error fetching blogs:", error);

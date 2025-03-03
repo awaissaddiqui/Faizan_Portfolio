@@ -8,6 +8,7 @@ import { IoLocationOutline } from 'react-icons/io5';
 import { SlGlobe } from 'react-icons/sl';
 
 const ContactInfo = () => {
+  const { VITE_REACT_SERVICE_ID, VITE_REACT_TEMPLATE_ID, VITE_REACT_PUBLIC_KEY } = import.meta.env;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -45,12 +46,12 @@ const ContactInfo = () => {
     setSuccess(false);
     setError(false);
 
-    const serviceID = "service_9r4jnnd"; // Replace with EmailJS Service ID
-    const templateID = "template_kfw53p8"; // Replace with EmailJS Template ID
-    const publicKey = "3GUBuAjKj03za432R"; // Replace with EmailJS Public Key
+    // const serviceID = "service_9r4jnnd"; 
+    // const templateID = "template_kfw53p8"; 
+    // const publicKey = "3GUBuAjKj03za432R"; 
 
     try {
-      await emailjs.send(serviceID, templateID, formData, publicKey);
+      await emailjs.send(VITE_REACT_SERVICE_ID, VITE_REACT_TEMPLATE_ID, formData, VITE_REACT_PUBLIC_KEY);
       setSuccess(true);
       console.log("Form submitted successfully", formData);
       setFormData({ name: "", email: "", message: "" })
