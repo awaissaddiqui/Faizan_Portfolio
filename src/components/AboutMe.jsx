@@ -16,7 +16,7 @@ const AboutMe = () => {
                     My expertise includes designing robust cloud solutions, implementing serverless architectures,
                     and optimizing web applications for scalability and performance.
                 </p>
-                <a href="Faizan-Shah-Resume.pdf" download="Faizan-Shah-Resume.pdf">
+                <a href="https://faizaanshah.github.io/portfolio/images/cv.pdf" target="_blank" download="Faizan-Shah-Resume.pdf">
                     <button className="inline-flex item-center hover:cursor-pointer bg-white text-black font-semibold mt-5 px-6 py-2  rounded-lg shadow-lg hover:bg-blue-700 hover:text-white transition duration-300">
                         <LiaFileDownloadSolid className="w-5 h-5 mr-2 inline" /> Download CV
                     </button>

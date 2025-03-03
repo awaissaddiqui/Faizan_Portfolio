@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import withSectionLayout from "../hoc/withSectionLayout";
+import blog5 from '../assets/blog5.png';
+/*
 import blog1 from '../assets/blog1.png';
 import blog2 from '../assets/blog2.png';
 import blog3 from '../assets/blog3.png';
 import blog4 from '../assets/blog4.png';
-import blog5 from '../assets/blog5.png';
+
 const blogPosts = [
   {
     image: blog1, // Replace with actual image URL
@@ -20,8 +22,7 @@ const blogPosts = [
     image: blog2,
     title: "How to Copy SQL Queries response into S3 bucket",
     link: "https://medium.com/@faizanshah801/how-to-copy-a-sql-queries-response-into-s3-bucket-736f9bc56b75",
-    description: `This article explains how can one copy some posgresql 
-                  quries response directly into AWS S3 from RDS in csv file...`,
+    description: `This article explains how can one copy some posgresql quries response directly into AWS S3 from RDS in csv file...`,
   },
   {
     image: blog3,
@@ -45,8 +46,47 @@ const blogPosts = [
       "Imagine having an app deployed on AWS ECS and is continuously being updated, and you need to update environment variables ...",
   },
 ];
+*/
 
 const Blogs = () => {
+  const [blogs, setBlogs] = useState([]);
+  useEffect(() => {
+    const fetchMediumBlogs = async () => {
+      try {
+        const response = await fetch(
+          "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@faizanshah801"
+        );
+        const data = await response.json();
+
+        if (data.status === "ok") {
+          const posts = data.items.map((item) => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(item.description, "text/html");
+            const imgTag = doc.querySelector("img");
+            const thumbnail = imgTag ? imgTag.src : item.thumbnail || blog5;
+
+            const textContent = doc.body.textContent || "";
+            const shortDescription = textContent.split("\n").slice(0, 3).join(" ").substring(0, 150) + "...";
+
+            return {
+              title: item.title,
+              description: shortDescription,
+              link: item.link,
+              image: thumbnail,
+            };
+          });
+
+          setBlogs(posts);
+          console.log(data);
+        }
+      } catch (error) {
+        console.log("Error fetching blogs:", error);
+      }
+    };
+    fetchMediumBlogs();
+  }, [])
+
+
   const settings = {
     dots: true,
     infinite: true,
@@ -74,7 +114,7 @@ const Blogs = () => {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <Slider {...settings}>
-        {blogPosts.map((post, index) => (
+        {blogs.map((post, index) => (
           <div key={index} className="p-4">
             <div className=" border border-gray-800 rounded-lg overflow-hidden shadow-lg">
               <img src={post.image} alt="Blog" className="w-full h-48 object-cover" />
